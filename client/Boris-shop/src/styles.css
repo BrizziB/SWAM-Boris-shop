@@ -1,5 +1,21 @@
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-size: 350%;
+  margin-bottom: 0.2em;
+}
+#subtitle{
+  margin-bottom: 1.5em;
+}
+#main-div{
+  margin-bottom: 0.1em;
+}
+a.btn{
+border-radius: .25rem !important; 
+border: 1px solid transparent; 
+padding: .5rem 1rem; 
+color: #fff !important; 
+}
+a.btn:hover {
+border-radius: .25rem !important; 
 }

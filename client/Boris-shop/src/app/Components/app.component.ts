@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { ProductService} from '../API/product.service';
+import { UserService} from '../API/user.service';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1>`,
+  templateUrl: './app.components.html'
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {
+  name = 'BoriShop';
+}
