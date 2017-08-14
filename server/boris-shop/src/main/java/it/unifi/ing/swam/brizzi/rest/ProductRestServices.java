@@ -21,6 +21,8 @@ public class ProductRestServices {
 		String productsJson = productController.retrieveAllProducts();
 		return  Response.ok(productsJson, MediaType.APPLICATION_JSON).build();
 	}
+	//c'è da implementare la cancellazione eh !
+	
 }
 
 

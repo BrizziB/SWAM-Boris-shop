@@ -24,7 +24,6 @@ public class ProductDao {
 
 		TypedQuery<Product> query = em.createQuery("from Product ", Product.class);
 		List<Product> tmp = query.getResultList();
-		
 		return tmp;
 	}
 
