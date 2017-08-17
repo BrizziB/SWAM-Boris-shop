@@ -12,6 +12,7 @@ var http_1 = require("@angular/http");
 var app_component_1 = require("./Components/app.component");
 var products_component_1 = require("./Components/products.component");
 var users_component_1 = require("./Components/users.component");
+var product_insertion_form_component_1 = require("./Components/product-insertion-form.component");
 var product_service_1 = require("./API/product.service");
 var user_service_1 = require("./API/user.service");
 var app_routing_module_1 = require("./app-routing.module");
@@ -31,7 +32,8 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             products_component_1.ProductsComponent,
-            users_component_1.UsersComponent
+            users_component_1.UsersComponent,
+            product_insertion_form_component_1.ProductInsertionFormComponent
         ],
         providers: [product_service_1.ProductService, user_service_1.UserService],
         bootstrap: [app_component_1.AppComponent]

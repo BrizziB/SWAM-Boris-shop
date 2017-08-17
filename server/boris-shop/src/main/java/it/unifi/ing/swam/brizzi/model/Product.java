@@ -50,7 +50,6 @@ public class Product {
 	public void setItemID(long itemID) {
 		this.itemID = itemID;
 	}
-	
-	
+
 	
 }
