@@ -23,7 +23,13 @@ public class ProductDao {
 	public void addProduct(Product p){
 			em.persist(p);
 	}
-
+	
+	@Transactional
+	public void updateProduct(Product p, long ID){
+		Product oldProduct = em.find(Product.class, ID);
+		oldProduct.copyProduct(p);
+	}
+	
 	public List<Product> retrieveAllProducts(){
 		List<Product> tmp = new ArrayList<>();
 		try{
@@ -47,7 +53,7 @@ public class ProductDao {
 			e.printStackTrace();
 		}
 		return numDeleted;
-	}
+	}	
 	
 	public Integer findQuantityByID(long ID){		
 		em.getTransaction().begin();

@@ -45,6 +45,15 @@ public class ProductController {
 		Product newProduct = productMapper.generateProductFromDTO(productDto);
 		productDao.addProduct(newProduct);
 		return gson.toJson(productDto);  //così è un po' finto perchè rispondo con lo stesso oggetto che è era nella request, però in teoria potrei averlo lavorato o aver aggiunto dei campi, quindi credo abbia senso
-		
 	}
+	
+	public String updateProduct(String body){
+		Gson gson = new Gson();
+		ProductDto productDto = gson.fromJson(body, ProductDto.class);
+		Product updatedProduct = productMapper.generateProductFromDTO(productDto);
+		long productID = productDto.getItemID();
+		productDao.updateProduct(updatedProduct, productID);
+		return gson.toJson(productDto);
+	}
+	
 }

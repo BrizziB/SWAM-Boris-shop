@@ -17,6 +17,11 @@ public class User {
 	
 	public User(){}
 	
+	public void copyUser(User user){
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+	}
+	
 	public long getUserID() {
 		return userID;
 	}

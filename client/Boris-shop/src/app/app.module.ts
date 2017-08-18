@@ -7,6 +7,7 @@ import { AppComponent }  from './Components/app.component';
 import { ProductsComponent} from './Components/products.component';
 import { UsersComponent} from './Components/users.component';
 import { ProductInsertionFormComponent } from './Components/product-insertion-form.component';
+import { UserInsertionFormComponent } from './Components/user-insertion-form.component'
 
 
 import { ProductService } from './API/product.service';
@@ -29,7 +30,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     AppComponent,
     ProductsComponent,
     UsersComponent,
-    ProductInsertionFormComponent
+    ProductInsertionFormComponent,
+    UserInsertionFormComponent
    ],
   providers: [ ProductService, UserService ],
   bootstrap:    [ AppComponent ]

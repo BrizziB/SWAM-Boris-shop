@@ -19,6 +19,13 @@ public class Product {
 	
 	public Product(){}
 
+	public void copyProduct(Product foreignProduct){
+		this.price = foreignProduct.getPrice();
+		this.description = foreignProduct.getDescription();
+		this.quantity = foreignProduct.getQuantity();
+	}
+	
+	
 	public float getPrice() {
 		return price;
 	}

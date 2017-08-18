@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -37,11 +38,19 @@ public class ProductRestServices {
 	@POST
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(String body){
-		String responseBody = productController.addProduct(body);
+	public Response addProduct(String requestBody){
+		String responseBody = productController.addProduct(requestBody);
 		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
 	}
 	
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateProduct(String requestBody){
+		String responseBody = productController.updateProduct(requestBody);
+		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
+		
+	}
 }
 
 
