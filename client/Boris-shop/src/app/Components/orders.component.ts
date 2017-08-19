@@ -6,7 +6,7 @@ import { OrderService } from '../API/order.service';
 @Component({
     selector: 'product-tab',
     templateUrl: './orders.component.html',
-    styleUrls: ['./orders.component.css']
+    /* styleUrls: ['./orders.component.css'] */
 })
 export class OrdersComponent implements OnInit { 
 

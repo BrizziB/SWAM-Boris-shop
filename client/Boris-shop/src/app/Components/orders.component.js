@@ -20,7 +20,6 @@ OrdersComponent = __decorate([
     core_1.Component({
         selector: 'product-tab',
         templateUrl: './orders.component.html',
-        styleUrls: ['./orders.component.css']
     })
 ], OrdersComponent);
 exports.OrdersComponent = OrdersComponent;
