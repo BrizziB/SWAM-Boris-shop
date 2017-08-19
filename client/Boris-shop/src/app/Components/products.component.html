@@ -1,0 +1,46 @@
+<div class="container">
+    <h2 id="products-title" style="text-align:center">Available Products</h2>
+    <p id="products-subtitle" style="text-align:center"> These are the products our cool store is selling at the moment !</p>
+
+    <div class="row" style="text-align:center">
+        <div class="col-sm-12">
+            <button id="add-prod-btn" type="button" class="btn btn-info" (click)="showForm = !showForm">Add Product</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>ID</th>
+                <th>Unitary price</th>
+                <th>Quantity in stock</th>
+                <th>Administration Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <th class="tab-field">
+                    <input [(ngModel)]="product.description" placeholder={{product.description}} (input)="activateSaveButton(product.itemID)"> 
+                </th>
+                <th class="tab-field">{{product.itemID}}</th>
+                <th class="tab-field">
+                    <input [(ngModel)]="product.price" placeholder={{product.price}} (input)="activateSaveButton(product.itemID)" >
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="product.quantity" placeholder={{product.quantity}} (input)="activateSaveButton(product.itemID)">
+                </th>
+
+                <th class="tab-field">
+                    <div class="btn-group" role="group">
+                        <button [attr.id]="'btn-remove-prod-' + product.itemID" (click)="removeProduct(product); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete" >Delete</button>
+                        <button [attr.id]="'btn-save-prod-' + product.itemID" (click)="saveProduct(product); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="showForm">
+    <product-insertion-tab ></product-insertion-tab> 
+</div>
+

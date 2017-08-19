@@ -1,0 +1,25 @@
+#main-form{
+    position: absolute;
+    top: 40%;
+    width: 20em;
+    left: 40%;
+    background-color:whitesmoke;
+    padding: 10px;
+
+    border: 1px solid black;
+}
+label{
+    
+    margin-bottom: 0px !important;
+    margin-top: 8px;
+}
+
+.form-label{
+    margin-top:8px !important;
+    margin-bottom: 0px !important;
+}
+
+button{
+    margin-top: 8px;
+    margin-right: 5px;
+}

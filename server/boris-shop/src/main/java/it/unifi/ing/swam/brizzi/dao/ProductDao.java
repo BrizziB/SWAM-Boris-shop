@@ -14,6 +14,7 @@ import it.unifi.ing.swam.brizzi.model.Product;
 //senza tag @Model credo non me lo riconosca come bean
 // NON USARLO MAI a meno che: The built-in stereotype @Model intended for use with beans that define
 //the model layer of an MVC web application architecture such as JSF.
+//ah ok ! 
 public class ProductDao {
 	
 	@PersistenceContext

@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 id="products-title" style="text-align:center">Current Store's Users</h2>
+    <p id="products-subtitle" style="text-align:center"> These are all the users of our cool store !</p>
+
+    <div class="row" style="text-align:center">
+        <div class="col-sm-12">
+            <button id="add-user-btn" type="button" class="btn btn-info" (click)="showForm = !showForm">Add User</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>userID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Administration Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th class="tab-field">{{user.userID}}</th>
+                <th class="tab-field">
+                    <input [(ngModel)]="user.username" placeholder={{user.username}} (input)="activateSaveButton(user.userID)">
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="user.password" placeholder={{user.password}} (input)="activateSaveButton(user.userID)">
+                </th>
+                <th class="tab-field">
+                    <div class="btn-group" role="group">
+                        <button [attr.id]="'btn-remove-user-' + user.userID" (click)="removeUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete">Delete</button>
+                        <button [attr.id]="'btn-save-user-' + user.userID" (click)="saveUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="showForm">
+    <user-insertion-tab></user-insertion-tab>
+</div>
