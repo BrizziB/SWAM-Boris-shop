@@ -12,10 +12,12 @@ var http_1 = require("@angular/http");
 var app_component_1 = require("./Components/app.component");
 var products_component_1 = require("./Components/products.component");
 var users_component_1 = require("./Components/users.component");
+var orders_component_1 = require("./Components/orders.component");
 var product_insertion_form_component_1 = require("./Components/product-insertion-form.component");
 var user_insertion_form_component_1 = require("./Components/user-insertion-form.component");
 var product_service_1 = require("./API/product.service");
 var user_service_1 = require("./API/user.service");
+var order_service_1 = require("./API/order.service");
 var app_routing_module_1 = require("./app-routing.module");
 var AppModule = (function () {
     function AppModule() {
@@ -34,10 +36,11 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             products_component_1.ProductsComponent,
             users_component_1.UsersComponent,
+            orders_component_1.OrdersComponent,
             product_insertion_form_component_1.ProductInsertionFormComponent,
             user_insertion_form_component_1.UserInsertionFormComponent
         ],
-        providers: [product_service_1.ProductService, user_service_1.UserService],
+        providers: [product_service_1.ProductService, user_service_1.UserService, order_service_1.OrderService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

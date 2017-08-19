@@ -37,7 +37,6 @@ export class ProductsComponent implements OnInit {
 
     getProducts(): void {
         this.productService.getProducts().then(products => this.products = products).then(products => this.setMaxIndex());
-
     }
 
     removeProduct(product: Product): void {
