@@ -13,26 +13,21 @@
                 <th>OrderID</th>
                 <th>Buyer</th>
                 <th>Items</th>
+                <th>Status</th>
                 <th>Administration Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let order of orders">
-                    <th class="tab-field">{{order.orderID}}</th>
-                <th class="tab-field">
-                    <input [(ngModel)]="order.buyer" placeholder={{order.buyer}} (input)="activateSaveButton(order.orderID)"> 
-                </th>
-                <th class="tab-field">
-                    <input [(ngModel)]="order.items" placeholder={{order.items}} (input)="activateSaveButton(order.orderID)" >
-                </th>
-                <th class="tab-field">
-                    <input [(ngModel)]="order.status" placeholder={{order.status}} (input)="activateSaveButton(order.orderID)">
-                </th>
+                <th class="tab-field">{{order.orderID}}</th>
+                <th class="tab-field">{{order.buyer}}</th>
+                <th class="tab-field">{{order.item}}</th>
+                <th class="tab-field">{{order.status}}</th>
 
                 <th class="tab-field">
                     <div class="btn-group" role="group">
-                        <button [attr.id]="'btn-remove-order-' + order.orderID" (click)="removeOrder(order); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete" >Delete</button>
-                        <button [attr.id]="'btn-save-order-' + order.orderID" (click)="saveOrder(order); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                        <button [attr.id]="'btn-remove-order-' + order.orderID" (click)="removeOrder(order); $event.stopPropagation()" type="button"
+                            class="btn btn-info btn-sm delete">Delete</button>
                     </div>
                 </th>
             </tr>
@@ -40,5 +35,5 @@
     </table>
 </div>
 <div *ngIf="showForm">
-    <order-insertion-tab ></order-insertion-tab> 
+    <order-insertion-tab></order-insertion-tab>
 </div>

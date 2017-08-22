@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class User {
 	
 	private String password;
 	
-	@OneToMany(mappedBy="buyer", cascade={CascadeType.REMOVE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="buyer", cascade={CascadeType.REMOVE})
 	private List<Order> orders;
 	
 	public List<Order> getOrders() {

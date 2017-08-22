@@ -19,10 +19,10 @@ public class Order {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long orderID;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private User buyer;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Product item;
 	
 	private OrderStatus status;
@@ -53,7 +53,7 @@ public class Order {
 		return item;
 	}
 
-	public void setItem(Product items) {
+	public void setItem(Product item) {
 		this.item = item;
 	}
 

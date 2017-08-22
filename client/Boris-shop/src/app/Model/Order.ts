@@ -4,8 +4,8 @@ import { Product} from './Product';
 
 export class Order {
     orderID: number;
-    buyer: User;
-    items: Product[];
+    buyer: String;
+    item: String;
     status: Status;
 
 }

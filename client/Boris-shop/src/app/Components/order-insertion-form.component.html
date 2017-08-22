@@ -1,0 +1,29 @@
+
+<div id="main-form">
+    <h3 id="form-title"> Insert Order details </h3><br>
+
+    <p>Move the mouse over the button to open the dropdown menu.</p>
+    
+    <div class="dropdown">
+      <label class="dropbtn">Select a Buyer</label>
+      <div class="dropdown-content">
+        <ul>
+            <a class="dropbtn" *ngFor="let user of allUsers" (click)="registerUser(user)">{{user.username}}</a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <label class="dropbtn">Select a Product</label>
+      <div class="dropdown-content">
+        <ul>
+            <a class="dropbtn" *ngFor="let product of allProducts" (click)="registerProduct(product)">{{product.description}}</a>
+        </ul>
+      </div>
+    </div>
+
+
+    <br>
+    <button id="insert-order-ok" class="btn btn-info btn-sm form-btn" (click)="addNewOrder(); closeForm();"> Ok </button>
+    <button id="insert-order-back" class="btn btn-info btn-sm form-btn" (click)="closeForm();"> Cancel </button>
+</div>

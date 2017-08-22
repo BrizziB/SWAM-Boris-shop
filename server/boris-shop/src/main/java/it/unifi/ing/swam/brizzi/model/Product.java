@@ -2,6 +2,7 @@ package it.unifi.ing.swam.brizzi.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Product {
 	private String description;
 	private Integer quantity;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
 	private List<Order> orders;
 	
 	public List<Order> getOrders() {
