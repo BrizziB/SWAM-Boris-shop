@@ -16,6 +16,9 @@ var ProductsComponent = (function () {
         this.productService = productService;
         this.router = router;
     }
+    ProductsComponent.prototype._getProducts = function () {
+        return this.products;
+    };
     ProductsComponent.prototype.allFieldsAreValid = function (product) {
         if ((product.description !== '' && product.description !== undefined)
             && (product.price.toString() !== '' && typeof +product.price === 'number') && !(isNaN(+product.price))

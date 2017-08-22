@@ -17,6 +17,9 @@ var UsersComponent = (function () {
         this.router = router;
         this.showForm = false;
     }
+    UsersComponent.prototype._getUsers = function () {
+        return this.users;
+    };
     UsersComponent.prototype.allFieldsAreValid = function (user) {
         if ((user.username !== '' && user.username !== undefined)
             && (user.password !== '' && user.password !== undefined)) {

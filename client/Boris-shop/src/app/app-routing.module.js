@@ -9,9 +9,11 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var products_component_1 = require("./Components/products.component");
 var users_component_1 = require("./Components/users.component");
+var orders_component_1 = require("./Components/orders.component");
 var routes = [
     { path: 'products', component: products_component_1.ProductsComponent },
-    { path: 'users', component: users_component_1.UsersComponent }
+    { path: 'users', component: users_component_1.UsersComponent },
+    { path: 'orders', component: orders_component_1.OrdersComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

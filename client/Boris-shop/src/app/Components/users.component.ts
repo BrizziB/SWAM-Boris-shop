@@ -16,6 +16,11 @@ export class UsersComponent implements OnInit {
         private userService: UserService,
         private router: Router) { }
 
+
+    _getUsers(): User[] {
+        return this.users;
+    }
+
     allFieldsAreValid(user: User): boolean {
         if ((user.username !== '' && user.username !== undefined)
             && (user.password !== '' && user.password !== undefined)) {

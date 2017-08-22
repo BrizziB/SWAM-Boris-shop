@@ -20,8 +20,8 @@ public class ProductController {
 	private ProductMapper productMapper;
 	@Inject
 	private ProductDao productDao;
-	
-	
+
+
 	public String retrieveAllProducts(){
 		List<ProductDto> prodDTOList = new ArrayList<>();
 		List<Product> prodList = productDao.retrieveAllProducts();
@@ -30,15 +30,15 @@ public class ProductController {
 		}
 		Gson jsonSerializer = new Gson();
 		return jsonSerializer.toJson(prodDTOList) ;
-		
+
 	}
-	
+
 	public void deleteProduct(long productID){
-	  int numDeleted = productDao.deleteProductByID(productID);
-	  if(numDeleted != 1)
-		  System.out.println("error in deleting single product");
+		int numDeleted = productDao.deleteProductByID(productID);
+		if(numDeleted != 1)
+			System.out.println("error in deleting single product");
 	}
-	
+
 	public String addProduct(String body){
 		Gson gson = new Gson();
 		ProductDto productDto = gson.fromJson(body, ProductDto.class);
@@ -46,7 +46,7 @@ public class ProductController {
 		productDao.addProduct(newProduct);
 		return gson.toJson(productDto);  //così è un po' finto perchè rispondo con lo stesso oggetto che è era nella request, però in teoria potrei averlo lavorato o aver aggiunto dei campi, quindi credo abbia senso
 	}
-	
+
 	public String updateProduct(String body){
 		Gson gson = new Gson();
 		ProductDto productDto = gson.fromJson(body, ProductDto.class);
@@ -55,5 +55,5 @@ public class ProductController {
 		productDao.updateProduct(updatedProduct, productID);
 		return gson.toJson(productDto);
 	}
-	
+
 }

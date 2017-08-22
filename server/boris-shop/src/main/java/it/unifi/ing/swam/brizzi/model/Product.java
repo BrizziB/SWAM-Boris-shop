@@ -1,15 +1,22 @@
 package it.unifi.ing.swam.brizzi.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Prodotti")
 public class Product {
+	
+	
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long itemID;
 	private float price;
@@ -17,6 +24,17 @@ public class Product {
 	private String description;
 	private Integer quantity;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private List<Order> orders;
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	public Product(){}
 
 	public void copyProduct(Product foreignProduct){

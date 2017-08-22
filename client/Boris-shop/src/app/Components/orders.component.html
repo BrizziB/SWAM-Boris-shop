@@ -1,0 +1,44 @@
+<div class="container">
+    <h2 id="orders-title" style="text-align:center">Active Orders</h2>
+    <p id="orders-subtitle" style="text-align:center"> These are all the orders currently active of our cool Store !</p>
+
+    <div class="row" style="text-align:center">
+        <div class="col-sm-12">
+            <button id="add-order-btn" type="button" class="btn btn-info" (click)="showForm = !showForm">Add Order</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>OrderID</th>
+                <th>Buyer</th>
+                <th>Items</th>
+                <th>Administration Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                    <th class="tab-field">{{order.orderID}}</th>
+                <th class="tab-field">
+                    <input [(ngModel)]="order.buyer" placeholder={{order.buyer}} (input)="activateSaveButton(order.orderID)"> 
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="order.items" placeholder={{order.items}} (input)="activateSaveButton(order.orderID)" >
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="order.status" placeholder={{order.status}} (input)="activateSaveButton(order.orderID)">
+                </th>
+
+                <th class="tab-field">
+                    <div class="btn-group" role="group">
+                        <button [attr.id]="'btn-remove-order-' + order.orderID" (click)="removeOrder(order); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete" >Delete</button>
+                        <button [attr.id]="'btn-save-order-' + order.orderID" (click)="saveOrder(order); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="showForm">
+    <order-insertion-tab ></order-insertion-tab> 
+</div>

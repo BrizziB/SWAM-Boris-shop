@@ -1,10 +1,14 @@
 package it.unifi.ing.swam.brizzi.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,11 +17,23 @@ public class User {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long userID;
+	
 	@Column(unique = true)
 	private String username;
-	private String password;
-
 	
+	private String password;
+	
+	@OneToMany(mappedBy="buyer", cascade={CascadeType.REMOVE})
+	private List<Order> orders;
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	public User(){}
 	
 	public void copyUser(User user){

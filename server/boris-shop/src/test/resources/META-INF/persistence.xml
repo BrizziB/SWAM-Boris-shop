@@ -9,6 +9,8 @@
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> 
 		
 		<class>it.unifi.ing.swam.brizzi.model.User</class>
+		<class>it.unifi.ing.swam.brizzi.model.Product</class>
+		<class>it.unifi.ing.swam.brizzi.model.Order</class>
 		
  		<properties>
  	   <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

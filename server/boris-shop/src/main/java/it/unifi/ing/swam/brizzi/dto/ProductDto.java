@@ -10,6 +10,7 @@ public class ProductDto implements Serializable {
 	private float price;
 	private String description;
 	private Integer quantity;
+	
 	public long getItemID() {
 		return itemID;
 	}

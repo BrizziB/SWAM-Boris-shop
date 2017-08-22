@@ -2,14 +2,15 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+/* import { BsDropdownModule } from 'ngx-bootstrap'; */
 
 import { AppComponent }  from './Components/app.component';
 import { ProductsComponent} from './Components/products.component';
 import { UsersComponent} from './Components/users.component';
 import { OrdersComponent } from './Components/orders.component';
 import { ProductInsertionFormComponent } from './Components/product-insertion-form.component';
-import { UserInsertionFormComponent } from './Components/user-insertion-form.component'
-
+import { UserInsertionFormComponent } from './Components/user-insertion-form.component';
+import { OrderInsertionFormComponent } from './Components/order-insertion-form.component';
 
 import { ProductService } from './API/product.service';
 import { UserService } from './API/user.service';
@@ -26,7 +27,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule/* ,
+    BsDropdownModule.forRoot() */
  ],
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     UsersComponent,
     OrdersComponent,
     ProductInsertionFormComponent,
-    UserInsertionFormComponent
+    UserInsertionFormComponent,
+    OrderInsertionFormComponent
    ],
   providers: [ ProductService, UserService, OrderService ],
   bootstrap:    [ AppComponent ]

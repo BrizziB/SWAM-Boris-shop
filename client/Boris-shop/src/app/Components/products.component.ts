@@ -16,10 +16,14 @@ export class ProductsComponent implements OnInit {
         private productService: ProductService,
         private router: Router) { }
 
+    _getProducts(): Product[] {
+        return this.products;
+    }
+
     allFieldsAreValid(product: Product): boolean {
         if ((product.description !== '' && product.description !== undefined)
-            && (product.price.toString() !== '' &&  typeof +product.price === 'number')  && !(isNaN(+product.price))
-            && (product.quantity.toString() !== '' &&  typeof +product.quantity === 'number')  && !(isNaN(+product.quantity))) {
+            && (product.price.toString() !== '' && typeof +product.price === 'number') && !(isNaN(+product.price))
+            && (product.quantity.toString() !== '' && typeof +product.quantity === 'number') && !(isNaN(+product.quantity))) {
             return true;
         }
         return false;
