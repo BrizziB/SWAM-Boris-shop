@@ -19,6 +19,8 @@ var OrderInsertionFormComponent = (function () {
         this.orderService = orderService;
         this.productService = productService;
         this.userService = userService;
+        this.showUserList = false;
+        this.showProductList = false;
     }
     OrderInsertionFormComponent.prototype.closeForm = function () {
         this.ordersComponent.showForm = false;
@@ -27,27 +29,38 @@ var OrderInsertionFormComponent = (function () {
         var _this = this;
         this.productService.getProducts().then(function (products) { return _this.allProducts = products; });
         this.userService.getUsers().then(function (users) { return _this.allUsers = users; });
+        this.items = [];
     };
     OrderInsertionFormComponent.prototype.registerUser = function (user) {
         this.buyer = user;
-        /* user.userID = null; */
     };
-    OrderInsertionFormComponent.prototype.registerProduct = function (product) {
-        this.item = product;
-        /* product.itemID = null; */
+    OrderInsertionFormComponent.prototype.updateProductList = function (product) {
+        if (document.getElementById('chkbx-' + product.itemID).checked === true) {
+            this.items.push(product);
+        }
+        else {
+            var index = this.items.indexOf(product);
+            if (index !== -1) {
+                this.items.splice(index, 1);
+            }
+        }
     };
     OrderInsertionFormComponent.prototype.addNewOrder = function () {
         var _this = this;
         this.orderID = this.ordersComponent.index;
-        /*         this.status = Status.REQUESTED; */
-        var body = JSON.stringify({
-            //orderID: this.orderID,
-            buyer: this.buyer,
-            item: this.item /* ,
-            status: this.status */
-        });
-        this.orderService.addNewOrder(body)
-            .then(function (order) { return _this.ordersComponent.orders.push(order); });
+        if (this.buyer === undefined || this.items.length === 0) {
+            alert('order was missing the buyer or at least on item');
+        }
+        else {
+            this.items.forEach(function (item) {
+                var body = JSON.stringify({
+                    buyer: _this.buyer,
+                    item: item
+                });
+                _this.orderService.addNewOrder(body)
+                    .then(function (order) { return _this.ordersComponent.orders.push(order); });
+            });
+        }
     };
     return OrderInsertionFormComponent;
 }());

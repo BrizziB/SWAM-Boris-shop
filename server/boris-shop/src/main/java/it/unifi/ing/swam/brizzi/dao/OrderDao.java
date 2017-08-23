@@ -53,6 +53,32 @@ public class OrderDao {
 		}
 		return numDeleted;
 	}	
+	@Transactional
+	public int deleteOrdersByUserID(long ID){
+		int numDeleted = 0;		
+		try{
+			Query query = em.createQuery(
+				"DELETE FROM Order o WHERE o.buyer.userID = :id")
+				.setParameter("id", ID);
+			numDeleted = query.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return numDeleted;
+	}
+	@Transactional
+	public int deleteOrdersByProductID(long ID){
+		int numDeleted = 0;		
+		try{
+			Query query = em.createQuery(
+				"DELETE FROM Order o WHERE o.item.itemID = :id")
+				.setParameter("id", ID);
+			numDeleted = query.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return numDeleted;
+	}
 	
 	public OrderStatus findStatusByID(long ID){		
 		em.getTransaction().begin();

@@ -24,7 +24,7 @@ public class User {
 	
 	private String password;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="buyer", cascade={CascadeType.REMOVE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="buyer", cascade={CascadeType.ALL})
 	private List<Order> orders;
 	
 	public List<Order> getOrders() {

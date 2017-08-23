@@ -19,10 +19,11 @@ import { Status } from '../Model/order';
 export class OrderInsertionFormComponent implements OnInit {
     orderID: number;
     buyer: User;
-    item: Product;
-/*     status: Status; */
+    items: Product[];
     allProducts: Product[];
     allUsers: User[];
+    showUserList = false;
+    showProductList = false;
 
     constructor(private ordersComponent: OrdersComponent,
         private orderService: OrderService,
@@ -37,30 +38,36 @@ export class OrderInsertionFormComponent implements OnInit {
     ngOnInit() {
         this.productService.getProducts().then(products => this.allProducts = products);
         this.userService.getUsers().then(users => this.allUsers = users);
+        this.items = [];
     }
 
     registerUser(user: User) {
         this.buyer = user;
-        /* user.userID = null; */
     }
-    registerProduct(product: Product) {
-        this.item = product;
-        /* product.itemID = null; */
+    updateProductList(product: Product) {
+        if ((<HTMLInputElement>document.getElementById('chkbx-' + product.itemID)).checked === true) {
+            this.items.push(product);
+        } else {
+            let index: number = this.items.indexOf(product);
+            if (index !== -1) {
+                this.items.splice(index, 1);
+            }
+        }
     }
 
     addNewOrder(): void {
         this.orderID = this.ordersComponent.index;
-/*         this.status = Status.REQUESTED; */
-
-        let body = JSON.stringify({
-            //orderID: this.orderID,
-            buyer: this.buyer,
-            item: this.item/* ,
-            status: this.status */
-        });
-
-        this.orderService.addNewOrder(body)
-            .then(order => this.ordersComponent.orders.push(order));
+        if (this.buyer === undefined || this.items.length === 0) {
+            alert('order was missing the buyer or at least on item');
+        } else {
+            this.items.forEach(item => {
+                let body = JSON.stringify({
+                    buyer: this.buyer,
+                    item: item
+                });
+                this.orderService.addNewOrder(body)
+                    .then(order => this.ordersComponent.orders.push(order));
+            });
+        }
     }
-
 }

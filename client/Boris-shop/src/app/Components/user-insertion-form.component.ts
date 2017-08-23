@@ -15,7 +15,7 @@ import { UserService } from '../API/user.service';
                     <input [(ngModel)]="this.password" placeholder="password"> <br>
                     <br>
                     <button id="insert-user-ok" class="btn btn-info btn-sm form-btn"
-                    (click)="addNewUser(); closeForm();" > Ok </button> 
+                    (click)="addNewUser(); closeForm();" > Send! </button> 
                     <button id="insert-user-back" class="btn btn-info btn-sm form-btn" (click)="closeForm();" > Cancel </button>
                </div>`,
     styleUrls: ['./insertion-form.component.css']

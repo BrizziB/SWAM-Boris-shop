@@ -1,29 +1,35 @@
-
 <div id="main-form">
-    <h3 id="form-title"> Insert Order details </h3><br>
+  <h3 id="form-title"> Insert Order details </h3><br>
 
-    <p>Move the mouse over the button to open the dropdown menu.</p>
-    
-    <div class="dropdown">
-      <label class="dropbtn">Select a Buyer</label>
-      <div class="dropdown-content">
-        <ul>
-            <a class="dropbtn" *ngFor="let user of allUsers" (click)="registerUser(user)">{{user.username}}</a>
-        </ul>
-      </div>
+  <button id="select-user" class="btn btn-info btn-sm form-btn" 
+    (click)="this.showUserList = !this.showUserList; this.showProductList=false;">Select a User </button>
+  <button id="select-products" class="btn btn-info btn-sm form-btn" 
+    (click)="this.showProductList = !this.showProductList; this.showUserList=false;">Select some products </button>
+
+  <div>
+    <div class="multiSelect" *ngIf="showUserList">
+      <ul class="insert-list" *ngFor="let user of allUsers">
+        <li>
+          <input type="radio" name="username" value="user.username" (click)="this.registerUser(user)" />{{user.username}}
+        </li>
+      </ul>
     </div>
-
-    <div class="dropdown">
-      <label class="dropbtn">Select a Product</label>
-      <div class="dropdown-content">
-        <ul>
-            <a class="dropbtn" *ngFor="let product of allProducts" (click)="registerProduct(product)">{{product.description}}</a>
-        </ul>
-      </div>
+  </div>
+  <div>
+    <div class="multiSelect" *ngIf="showProductList">
+      <ul class="insert-list" *ngFor="let product of allProducts">
+        <li>
+          <input  [attr.id]="'chkbx-' + product.itemID" type="checkbox" value="product.description"(change)="this.updateProductList(product);" />{{product.description}}
+        </li>
+      </ul>
     </div>
-
-
-    <br>
-    <button id="insert-order-ok" class="btn btn-info btn-sm form-btn" (click)="addNewOrder(); closeForm();"> Ok </button>
-    <button id="insert-order-back" class="btn btn-info btn-sm form-btn" (click)="closeForm();"> Cancel </button>
+  </div>
+  <div class="btn-group bottom-btn">
+    <button id="insert-order-ok" class="btn btn-info btn-sm form-btn " (click)="addNewOrder(); closeForm();"> Send! </button>
+    <button id="insert-order-back" class="btn btn-info btn-sm form-btn " (click)="closeForm();"> Cancel </button>
+  </div>
 </div>
+
+<script type="text/javascript" src="../Utils/order-insertion-form.utils.js">
+
+</script>

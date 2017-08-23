@@ -6,10 +6,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import it.unifi.ing.swam.brizzi.bean.mapper.ProductMapper;
+import it.unifi.ing.swam.brizzi.dao.OrderDao;
 import it.unifi.ing.swam.brizzi.dao.ProductDao;
 import it.unifi.ing.swam.brizzi.dto.ProductDto;
 import it.unifi.ing.swam.brizzi.model.Product;
@@ -20,6 +19,8 @@ public class ProductController {
 	private ProductMapper productMapper;
 	@Inject
 	private ProductDao productDao;
+	@Inject
+	private OrderDao orderDao;
 
 
 	public String retrieveAllProducts(){
@@ -34,6 +35,9 @@ public class ProductController {
 	}
 
 	public void deleteProduct(long productID){
+		
+		orderDao.deleteOrdersByProductID(productID); //nel caso sia in qualche ordine si propaga la cancellazione
+		
 		int numDeleted = productDao.deleteProductByID(productID);
 		if(numDeleted != 1)
 			System.out.println("error in deleting single product");

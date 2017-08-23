@@ -8,10 +8,9 @@ import javax.inject.Inject;
 import com.google.gson.Gson;
 
 import it.unifi.ing.swam.brizzi.bean.mapper.UserMapper;
+import it.unifi.ing.swam.brizzi.dao.OrderDao;
 import it.unifi.ing.swam.brizzi.dao.UserDao;
-import it.unifi.ing.swam.brizzi.dto.ProductDto;
 import it.unifi.ing.swam.brizzi.dto.UserDto;
-import it.unifi.ing.swam.brizzi.model.Product;
 import it.unifi.ing.swam.brizzi.model.User;
 
 public class UserController {
@@ -20,7 +19,8 @@ public class UserController {
 	private UserMapper userMapper;
 	@Inject
 	private UserDao userDao;
-
+	@Inject
+	private OrderDao orderDao;
 	
 	public String retrieveAllUsers(){
 		List<UserDto> userDTOList = new ArrayList<>();
@@ -33,6 +33,9 @@ public class UserController {
 		
 	}
 	public void deleteUser(long ID){
+		
+		orderDao.deleteOrdersByUserID(ID); //nel caso sia in qualche ordine si propaga la cancellazione
+		
 		int numDeleted = userDao.deleteUserByID(ID);
 		if(numDeleted != 1)
 			  System.out.println("error in deleting single user");

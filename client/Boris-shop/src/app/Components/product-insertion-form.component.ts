@@ -17,7 +17,7 @@ import { ProductService } from '../API/product.service';
                     <input  [(ngModel)]="this.quantity" placeholder="quantity">
                     <br>
                     <button id="insert-product-ok" class="btn btn-info btn-sm form-btn"
-                    (click)="addNewProduct(); closeForm();" > Ok </button> 
+                    (click)="addNewProduct(); closeForm();" > Send! </button> 
                     <button id="insert-product-back" class="btn btn-info btn-sm form-btn" (click)="closeForm();" > Cancel </button>
                </div>`,
     styleUrls: ['./insertion-form.component.css']
