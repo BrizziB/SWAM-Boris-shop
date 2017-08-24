@@ -37,6 +37,13 @@ var OrderService = (function () {
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
+    OrderService.prototype.advanceOrderStatus = function (orderID) {
+        var url = this.ordersUrl + "/advance/" + orderID;
+        return this.http.put(url, { headers: this.headers })
+            .toPromise()
+            .then(function () { return null; })
+            .catch(this.handleError);
+    };
     return OrderService;
 }());
 OrderService = __decorate([

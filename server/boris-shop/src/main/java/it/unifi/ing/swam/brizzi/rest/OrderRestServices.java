@@ -44,11 +44,10 @@ public class OrderRestServices {
 	}
 	
 	@PUT
-	@Path("/update")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduct(String requestBody){
-		String responseBody = orderController.updateOrder(requestBody);
-		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
+	@Path("/advance/{orderID}")
+	public Response advanceProduct(@PathParam("orderID") long id){
+		orderController.advanceOrderStatus(id);
+		return Response.ok().build();
 		
 	}
 }

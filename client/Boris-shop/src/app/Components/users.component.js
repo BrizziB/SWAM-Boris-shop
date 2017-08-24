@@ -50,17 +50,17 @@ var UsersComponent = (function () {
     };
     UsersComponent.prototype.saveUser = function (user) {
         var _this = this;
-        // il salvataggio lo faccio su ogni campo, 
-        // anche se ne viene modificato uno, non è ottimizzato ma con così pochi campi direi che può andare
-        var selectedProduct = this.users.find(function (item) { return item.userID === user.userID; });
-        if (!this.allFieldsAreValid(selectedProduct)) {
+        // il salvataggio lo faccio su ogni campo, anche se ne viene modificato uno.
+        //  non è ottimizzato ma con così pochi campi direi che può andare
+        var selectedUser = this.users.find(function (item) { return item.userID === user.userID; });
+        if (!this.allFieldsAreValid(selectedUser)) {
             alert('some field has been left blank or contains illegal characters');
         }
         else {
             var body = JSON.stringify({
-                userID: selectedProduct.userID,
-                username: selectedProduct.username,
-                password: selectedProduct.password
+                userID: selectedUser.userID,
+                username: selectedUser.username,
+                password: selectedUser.password
             });
             this.userService.updateUser(body).then(function (user) { return _this.disactivateSaveButton(user.userID); });
         }

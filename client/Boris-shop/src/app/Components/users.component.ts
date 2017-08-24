@@ -52,17 +52,17 @@ export class UsersComponent implements OnInit {
     }
 
     saveUser(user: User): void {
-        // il salvataggio lo faccio su ogni campo, 
-        // anche se ne viene modificato uno, non è ottimizzato ma con così pochi campi direi che può andare
-        let selectedProduct = this.users.find(item => item.userID === user.userID);
+        // il salvataggio lo faccio su ogni campo, anche se ne viene modificato uno.
+        //  non è ottimizzato ma con così pochi campi direi che può andare
+        let selectedUser = this.users.find(item => item.userID === user.userID);
 
-        if (!this.allFieldsAreValid(selectedProduct)) {
+        if (!this.allFieldsAreValid(selectedUser)) {
             alert('some field has been left blank or contains illegal characters');
         } else {
             let body = JSON.stringify({
-                userID: selectedProduct.userID,
-                username: selectedProduct.username,
-                password: selectedProduct.password
+                userID: selectedUser.userID,
+                username: selectedUser.username,
+                password: selectedUser.password
             });
 
             this.userService.updateUser(body).then(user => this.disactivateSaveButton(user.userID));

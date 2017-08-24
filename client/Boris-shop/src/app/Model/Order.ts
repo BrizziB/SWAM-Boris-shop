@@ -16,4 +16,5 @@ export enum Status {
     IN_PREPARATION = 3,
     SENT = 4,
     RECEIVED = 5
+    
 }

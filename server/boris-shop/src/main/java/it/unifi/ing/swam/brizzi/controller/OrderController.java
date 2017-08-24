@@ -48,13 +48,10 @@ public class OrderController{
 		return gson.toJson(orderDto);
 	}
 
-	public String updateOrder(String requestBody) {
-		Gson gson = new Gson();
-		Order updatedOrder = gson.fromJson(requestBody, Order.class);
-		long orderID = updatedOrder.getOrderID();
-		orderDao.updateOrder(updatedOrder, orderID);
-		OrderDto orderDto = orderMapper.generateOrderTO(updatedOrder);
-		return gson.toJson(orderDto);
+	public void advanceOrderStatus(long id) {
+
+		orderDao.advanceOrderByID(id);
+
 	}
 
 }

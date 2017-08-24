@@ -34,4 +34,12 @@ export class OrderService {
             .then(res => res.json() as Order)
             .catch(this.handleError);
     }
+
+    advanceOrderStatus(orderID: number): Promise<any> {
+        const url = `${this.ordersUrl}/advance/${orderID}`;
+        return this.http.put(url, { headers: this.headers })
+        .toPromise()
+        .then(() => null)
+        .catch(this.handleError);
+    }
 }
