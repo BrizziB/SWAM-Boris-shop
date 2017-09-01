@@ -80,9 +80,10 @@ public class OrderDao {
 		return numDeleted;
 	}
 	@Transactional
-	public void advanceOrderByID(long ID){
+	public Order advanceOrderByID(long ID){
 		Order order = em.find(Order.class, ID);
 		order.setStatus(order.getStatus().next());
+		return order;
 	}
 	
 	

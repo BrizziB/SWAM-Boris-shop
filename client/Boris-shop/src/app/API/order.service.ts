@@ -39,7 +39,7 @@ export class OrderService {
         const url = `${this.ordersUrl}/advance/${orderID}`;
         return this.http.put(url, { headers: this.headers })
         .toPromise()
-        .then(() => null)
+        .then(res => res.json())
         .catch(this.handleError);
     }
 }

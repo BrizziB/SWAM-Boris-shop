@@ -26,10 +26,7 @@ var OrdersComponent = (function () {
         this.index = max + 1;
     };
     OrdersComponent.prototype.advanceOrderStatus = function (order) {
-        this.orderService.advanceOrderStatus(order.orderID).then();
-        var actualStatus = order.status;
-        var index = order.status[actualStatus];
-        order.status = order.status[index + 1];
+        this.orderService.advanceOrderStatus(order.orderID).then(function (status) { return order.status = status; });
     };
     OrdersComponent.prototype.getOrders = function () {
         var _this = this;

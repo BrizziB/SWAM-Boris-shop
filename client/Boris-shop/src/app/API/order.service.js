@@ -41,7 +41,7 @@ var OrderService = (function () {
         var url = this.ordersUrl + "/advance/" + orderID;
         return this.http.put(url, { headers: this.headers })
             .toPromise()
-            .then(function () { return null; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     return OrderService;

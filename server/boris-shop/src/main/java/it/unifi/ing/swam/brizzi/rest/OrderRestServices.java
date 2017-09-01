@@ -46,8 +46,8 @@ public class OrderRestServices {
 	@PUT
 	@Path("/advance/{orderID}")
 	public Response advanceProduct(@PathParam("orderID") long id){
-		orderController.advanceOrderStatus(id);
-		return Response.ok().build();
+		String responseBody = orderController.advanceOrderStatus(id);
+		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
 		
 	}
 }

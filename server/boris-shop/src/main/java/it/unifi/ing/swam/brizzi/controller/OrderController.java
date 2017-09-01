@@ -48,9 +48,12 @@ public class OrderController{
 		return gson.toJson(orderDto);
 	}
 
-	public void advanceOrderStatus(long id) {
-
-		orderDao.advanceOrderByID(id);
+	public String advanceOrderStatus(long id) {
+		Gson gson = new Gson();
+		Order updatedOrder = orderDao.advanceOrderByID(id);
+		return gson.toJson(updatedOrder.getStatus());
+		
+		
 
 	}
 

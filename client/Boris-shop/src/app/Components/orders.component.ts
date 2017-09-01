@@ -28,11 +28,8 @@ export class OrdersComponent implements OnInit {
         this.index = max + 1;
     }
     advanceOrderStatus(order: Order): void {
-        this.orderService.advanceOrderStatus(order.orderID).then();
-        let actualStatus = order.status;
-        let index = order.status[actualStatus];
-        order.status = order.status[index+1];
-        
+        this.orderService.advanceOrderStatus(order.orderID).then(status => order.status = status);
+
     }
 
     getOrders(): void {
