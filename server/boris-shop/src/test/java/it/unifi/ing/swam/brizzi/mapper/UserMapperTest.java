@@ -60,14 +60,16 @@ public class UserMapperTest {
 	
 	@Test
 	public void generateDtoTest(){
-		assertEquals(userDto.getUserID(), userMapper.generateUserTO(user).getUserID());
-		assertEquals(userDto.getUsername(), userMapper.generateUserTO(user).getUsername());
-		assertEquals(userDto.getPassword(), userMapper.generateUserTO(user).getPassword());
+		UserDto tmpUserDto = userMapper.generateUserTO(user);
+		assertEquals(userDto.getUserID(), tmpUserDto.getUserID());
+		assertEquals(userDto.getUsername(), tmpUserDto.getUsername());
+		assertEquals(userDto.getPassword(), tmpUserDto.getPassword());
 		
-		assertEquals(newUser.getPassword(), userMapper.generateUserFromDTO(userDto).getPassword());
-		assertEquals(newUser.getUsername(), userMapper.generateUserFromDTO(userDto).getUsername());
+		User tmpUser = userMapper.generateUserFromDTO(userDto);
+		assertEquals(newUser.getPassword(), tmpUser.getPassword());
+		assertEquals(newUser.getUsername(), tmpUser.getUsername());
 		
 	}
-	
+
 
 }

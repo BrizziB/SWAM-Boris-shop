@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 import it.unifi.ing.swam.brizzi.model.Order;
 import it.unifi.ing.swam.brizzi.model.OrderStatus;
-import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 
 public class OrderDao {
 

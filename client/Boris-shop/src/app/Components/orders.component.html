@@ -27,10 +27,10 @@
                 <th class="tab-field">
                     <div class="btn-group" role="group">
                         <button [attr.id]="'btn-remove-order-' + order.orderID" (click)="removeOrder(order); $event.stopPropagation()" type="button"
-                            class="btn btn-info btn-sm delete">Delete</button>
+                            class="btn btn-info btn-sm delete group-btn">Delete</button>
 
                         <button [attr.id]="'btn-advance-order-' + order.orderID" (click)="advanceOrderStatus(order); $event.stopPropagation()" type="button"
-                            class="btn btn-info btn-sm delete">AdvanceStatus</button>
+                            class="btn btn-info btn-sm delete group-btn">AdvanceStatus</button>
                     </div>
                 </th>
             </tr>

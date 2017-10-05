@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import it.unifi.ing.swam.brizzi.model.Product;
+
 import it.unifi.ing.swam.brizzi.model.User;
 
 public class UserDao {

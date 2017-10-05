@@ -38,10 +38,15 @@ var ProductInsertionFormComponent = (function () {
                 itemID: this.itemID,
                 description: this.description,
                 price: this.price,
-                quantity: this.quantity
+                quantity: this.quantity,
+                discount: this.discount,
+                conditions: this.conditions
             });
             this.productService.addNewProduct(body)
-                .then(function (product) { return _this.productComponent.products.push(product); });
+                .then(function (product) {
+                _this.productComponent.products.push(product);
+                _this.productComponent.setMaxIndex();
+            });
         }
     };
     return ProductInsertionFormComponent;
@@ -49,7 +54,7 @@ var ProductInsertionFormComponent = (function () {
 ProductInsertionFormComponent = __decorate([
     core_1.Component({
         selector: 'product-insertion-tab',
-        template: "<div id=\"main-form\">\n                    <h3 id=\"form-title\"> Insert Product details </h3><br>\n                    <label > product Description: </label><br>\n                    <input [(ngModel)]=\"this.description\" placeholder=\"description\"><br>\n                    <label > product Price: </label><br>\n                    <input [(ngModel)]=\"this.price\" placeholder=\"price\"> <label> \u20AC </label><br>\n                    <label > quantity in stock: </label><br>\n                    <input  [(ngModel)]=\"this.quantity\" placeholder=\"quantity\">\n                    <br>\n                    <button id=\"insert-product-ok\" class=\"btn btn-info btn-sm form-btn\"\n                    (click)=\"addNewProduct(); closeForm();\" > Send! </button> \n                    <button id=\"insert-product-back\" class=\"btn btn-info btn-sm form-btn\" (click)=\"closeForm();\" > Cancel </button>\n               </div>",
+        template: "<div id=\"main-form\">\n                    <h3 id=\"form-title\"> Insert Product details </h3><br>\n                    <label > product Description: </label><br>\n                    <input [(ngModel)]=\"this.description\" placeholder=\"description\"><br>\n                    \n                    <label > product Price: </label><br>\n                    <input [(ngModel)]=\"this.price\" placeholder=\"price\"> <label> \u20AC </label><br>\n                    \n                    <label > quantity in stock: </label><br>\n                    <input  [(ngModel)]=\"this.quantity\" placeholder=\"quantity\">\n                    \n                    <label > Discont(optional, between 0 and 1): </label><br>\n                    <input  [(ngModel)]=\"this.discount\" placeholder=\"discount\">\n                    \n                    <label > Conditions(only id reconditioned): </label><br>\n                    <input  [(ngModel)]=\"this.conditions\" placeholder=\"conditions\">\n                    \n                    <br>\n                    <button id=\"insert-product-ok\" class=\"btn btn-info btn-sm form-btn\"\n                    (click)=\"addNewProduct(); closeForm();\" > Send! </button> \n                    <button id=\"insert-product-back\" class=\"btn btn-info btn-sm form-btn\" (click)=\"closeForm();\" > Cancel </button>\n               </div>",
         styleUrls: ['./insertion-form.component.css']
     }),
     __metadata("design:paramtypes", [products_component_1.ProductsComponent,

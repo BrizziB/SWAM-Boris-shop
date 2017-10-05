@@ -52,7 +52,10 @@ export class UserInsertionFormComponent {
             });
 
             this.userService.addNewUser(body)
-                .then(user => this.usersComponent.users.push(user));
+                .then(user => {this.usersComponent.users.push(user);
+                    this.usersComponent.setMaxIndex();
+                }
+            );
         }
     }
 }

@@ -39,7 +39,10 @@ var UserInsertionFormComponent = (function () {
                 password: this.password
             });
             this.userService.addNewUser(body)
-                .then(function (user) { return _this.usersComponent.users.push(user); });
+                .then(function (user) {
+                _this.usersComponent.users.push(user);
+                _this.usersComponent.setMaxIndex();
+            });
         }
     };
     return UserInsertionFormComponent;

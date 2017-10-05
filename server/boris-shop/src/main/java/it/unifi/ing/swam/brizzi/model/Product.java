@@ -8,26 +8,32 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="Prodotti")
-public class Product {
-	
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public abstract class Product {
 	
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long itemID;
-	private float price;
+	protected long itemID;
+	protected float price;
 	@Lob
-	private String description;
-	private Integer quantity;
+	protected String description;
+	protected Integer quantity;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
-	private List<Order> orders;
+	protected List<Order> orders;
 	
+	public Product(){}
+			
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -35,15 +41,6 @@ public class Product {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-
-	public Product(){}
-
-	public void copyProduct(Product foreignProduct){
-		this.price = foreignProduct.getPrice();
-		this.description = foreignProduct.getDescription();
-		this.quantity = foreignProduct.getQuantity();
-	}
-	
 	
 	public float getPrice() {
 		return price;

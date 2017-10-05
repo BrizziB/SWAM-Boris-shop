@@ -9,26 +9,24 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 
-//senza tag @Model credo non me lo riconosca come bean
-// NON USARLO MAI a meno che: The built-in stereotype @Model intended for use with beans that define
-//the model layer of an MVC web application architecture such as JSF.
-//ah ok ! 
 public class ProductDao {
 	
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Transactional
-	public void addProduct(Product p){
-			em.persist(p);
+	public void addProduct(Product newProduct){
+			em.persist(newProduct);
 	}
 	
 	@Transactional
-	public void updateProduct(Product p, long ID){
+	public void updateProduct(Product updatedProduct, long ID){
 		Product oldProduct = em.find(Product.class, ID);
-		oldProduct.copyProduct(p);
+		oldProduct = updatedProduct;
 	}
 	
 	public List<Product> retrieveAllProducts(){

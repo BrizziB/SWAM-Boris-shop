@@ -27,8 +27,8 @@
                 </th>
                 <th class="tab-field">
                     <div class="btn-group" role="group">
-                        <button [attr.id]="'btn-remove-user-' + user.userID" (click)="removeUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete">Delete</button>
-                        <button [attr.id]="'btn-save-user-' + user.userID" (click)="saveUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                        <button [attr.id]="'btn-remove-user-' + user.userID" (click)="removeUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete group-btn">Delete</button>
+                        <button [attr.id]="'btn-save-user-' + user.userID" (click)="saveUser(user); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled group-btn">SaveChanges</button>
                     </div>
                 </th>
             </tr>

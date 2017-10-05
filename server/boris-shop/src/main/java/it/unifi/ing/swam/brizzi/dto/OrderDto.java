@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import it.unifi.ing.swam.brizzi.model.OrderStatus;
-import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 import it.unifi.ing.swam.brizzi.model.User;
 
 public class OrderDto implements Serializable {

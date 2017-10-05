@@ -10,7 +10,21 @@ public class ProductDto implements Serializable {
 	private float price;
 	private String description;
 	private Integer quantity;
+	private String conditions;
+	private float discount;
 	
+	public String getConditions() {
+		return conditions;
+	}
+	public void setConditions(String conditions) {
+		this.conditions = conditions;
+	}
+	public float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(float discount) {
+		this.discount = discount;
+	}
 	public long getItemID() {
 		return itemID;
 	}

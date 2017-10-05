@@ -6,9 +6,6 @@ import { UserService } from '../API/user.service';
 import { ProductService } from '../API/product.service';
 import { User } from '../Model/user';
 import { Product } from '../Model/product';
-import { Status } from '../Model/order';
-
-
 
 
 @Component({

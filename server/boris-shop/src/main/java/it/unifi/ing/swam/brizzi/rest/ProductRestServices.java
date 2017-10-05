@@ -38,9 +38,14 @@ public class ProductRestServices {
 	@POST
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(String requestBody){
-		String responseBody = productController.addProduct(requestBody);
-		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
+	public Response addProduct(String requestBody) throws Exception{
+		try{
+			String responseBody = productController.addProduct(requestBody);
+			return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
+		}catch (Exception e){
+			return Response.notAcceptable(null).build();
+		}
+		
 	}
 	
 	@PUT

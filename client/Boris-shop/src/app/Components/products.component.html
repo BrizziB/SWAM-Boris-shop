@@ -32,8 +32,8 @@
 
                 <th class="tab-field">
                     <div class="btn-group" role="group">
-                        <button [attr.id]="'btn-remove-prod-' + product.itemID" (click)="removeProduct(product); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete" >Delete</button>
-                        <button [attr.id]="'btn-save-prod-' + product.itemID" (click)="saveProduct(product); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled">SaveChanges</button>
+                        <button [attr.id]="'btn-remove-prod-' + product.itemID" (click)="removeProduct(product); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete group-btn" >Delete</button>
+                        <button [attr.id]="'btn-save-prod-' + product.itemID" (click)="saveProduct(product); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled group-btn">SaveChanges</button>
                     </div>
                 </th>
             </tr>

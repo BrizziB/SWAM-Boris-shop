@@ -3,7 +3,7 @@ package it.unifi.ing.swam.brizzi.bean.mapper;
 import it.unifi.ing.swam.brizzi.dto.OrderDto;
 import it.unifi.ing.swam.brizzi.dto.ProductDto;
 import it.unifi.ing.swam.brizzi.model.Order;
-import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 
 public class OrderMapper {
 
