@@ -16,56 +16,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="Prodotti")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+//@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Product {
 	
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	protected long itemID;
-	protected float price;
-	@Lob
-	protected String description;
-	protected Integer quantity;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item", cascade = CascadeType.ALL)
 	protected List<Order> orders;
 	
-	public Product(){}
-			
 	public List<Order> getOrders() {
 		return orders;
 	}
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
-	}
+	}	
 	
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
 	public long getItemID() {
 		return itemID;
 	}
@@ -73,6 +43,11 @@ public abstract class Product {
 	public void setItemID(long itemID) {
 		this.itemID = itemID;
 	}
+	
+	public abstract String getDescription();
+	
+	public abstract float getTotalPrice();
+
 
 	
 }

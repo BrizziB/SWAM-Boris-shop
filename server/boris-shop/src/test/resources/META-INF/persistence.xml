@@ -10,6 +10,9 @@
 		
 		<class>it.unifi.ing.swam.brizzi.model.User</class>
 		<class>it.unifi.ing.swam.brizzi.model.Product</class>
+		<class>it.unifi.ing.swam.brizzi.model.PromoProduct</class>
+		<class>it.unifi.ing.swam.brizzi.model.ReconditionedProduct</class>
+		<class>it.unifi.ing.swam.brizzi.model.BasicProduct</class>
 		<class>it.unifi.ing.swam.brizzi.model.Order</class>
 		
  		<properties>

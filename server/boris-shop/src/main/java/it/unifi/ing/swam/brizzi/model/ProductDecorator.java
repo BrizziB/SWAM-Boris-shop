@@ -1,10 +1,7 @@
 package it.unifi.ing.swam.brizzi.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 public class ProductDecorator extends Product{
@@ -15,6 +12,26 @@ public class ProductDecorator extends Product{
 	public ProductDecorator(Product prod){
 		this.product = prod;
 	}
+
+	@Override
+	public String getDescription(){
+		return product.getDescription();
+	}
+	
+	@Override
+	public float getTotalPrice() {
+		return product.getTotalPrice();
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
+	
 	
 	public ProductDecorator(){
 		

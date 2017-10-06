@@ -16,9 +16,7 @@ public class UserDaoJpaTest extends JpaTest {
 	private User user;
 
 	@Override
-	protected void init() throws InitializationError {
-
-		
+	protected void init() throws InitializationError {		
 		userDao = new UserDao();
 		try {
 			FieldUtils.writeField(userDao, "em", em, true);

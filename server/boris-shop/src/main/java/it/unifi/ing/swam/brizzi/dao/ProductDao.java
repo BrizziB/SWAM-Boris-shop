@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import it.unifi.ing.swam.brizzi.model.BasicProduct;
 import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.ProductDecorator;
 import it.unifi.ing.swam.brizzi.model.BasicProduct;
 
 public class ProductDao {
@@ -20,7 +21,13 @@ public class ProductDao {
 	
 	@Transactional
 	public void addProduct(Product newProduct){
-			em.persist(newProduct);
+//			em.persist(newProduct);
+		
+		if( newProduct instanceof ProductDecorator ){//ha un product al suo interno
+			addProduct(((ProductDecorator) newProduct).getProduct());
+		}
+		em.persist(newProduct);
+		
 	}
 	
 	@Transactional

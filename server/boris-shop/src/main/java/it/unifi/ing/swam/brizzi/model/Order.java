@@ -1,17 +1,15 @@
 package it.unifi.ing.swam.brizzi.model;
 
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import it.unifi.ing.swam.brizzi.model.Product;
 
 @Entity
 @Table(name="Ordini")
@@ -29,7 +27,7 @@ public class Order {
 	
 	public void copyOrder(Order otherOrder){
 		this.buyer = otherOrder.getBuyer();
-		this.item = otherOrder.getItem();
+		this.item = (BasicProduct) otherOrder.getItem();
 		this.status = otherOrder.getStatus();
 	}
 
@@ -49,12 +47,12 @@ public class Order {
 		this.buyer = buyer;
 	}
 
-	public BasicProduct getItem() {
+	public Product getItem() {
 		return item;
 	}
 
-	public void setItem(BasicProduct item) {
-		this.item = item;
+	public void setItem(Product item) {
+		this.item = (BasicProduct) item;
 	}
 
 	public OrderStatus getStatus() {
