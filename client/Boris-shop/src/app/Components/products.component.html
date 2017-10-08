@@ -11,9 +11,11 @@
         <thead>
             <tr>
                 <th>Description</th>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Unitary price</th>
                 <th>Quantity in stock</th>
+                <th>Discount (if in promo)</th>
+                <th>Conditions (if reconditioned)</th>
                 <th>Administration Actions</th>
             </tr>
         </thead>
@@ -22,12 +24,18 @@
                 <th class="tab-field">
                     <input [(ngModel)]="product.description" placeholder={{product.description}} (input)="activateSaveButton(product.itemID)"> 
                 </th>
-                <th class="tab-field">{{product.itemID}}</th>
+                <!-- <th class="tab-field">{{product.itemID}}</th> -->
                 <th class="tab-field">
                     <input [(ngModel)]="product.price" placeholder={{product.price}} (input)="activateSaveButton(product.itemID)" >
                 </th>
                 <th class="tab-field">
                     <input [(ngModel)]="product.quantity" placeholder={{product.quantity}} (input)="activateSaveButton(product.itemID)">
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="product.discount" placeholder={{product.discount}} (input)="activateSaveButton(product.itemID)">
+                </th>
+                <th class="tab-field">
+                    <input [(ngModel)]="product.conditions" placeholder={{product.conditions}} (input)="activateSaveButton(product.itemID)">
                 </th>
 
                 <th class="tab-field">

@@ -1,6 +1,7 @@
 package it.unifi.ing.swam.brizzi.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,7 +12,9 @@ import it.unifi.ing.swam.brizzi.bean.mapper.ProductMapper;
 import it.unifi.ing.swam.brizzi.dao.OrderDao;
 import it.unifi.ing.swam.brizzi.dao.ProductDao;
 import it.unifi.ing.swam.brizzi.dto.ProductDto;
+import it.unifi.ing.swam.brizzi.model.BasicProduct;
 import it.unifi.ing.swam.brizzi.model.Product;
+import it.unifi.ing.swam.brizzi.model.ProductDecorator;
 import it.unifi.ing.swam.brizzi.model.PromoProduct;
 import it.unifi.ing.swam.brizzi.model.ReconditionedProduct;
 
@@ -28,20 +31,44 @@ public class ProductController {
 	public String retrieveAllProducts(){
 		List<ProductDto> prodDTOList = new ArrayList<>();
 		List<Product> prodList = productDao.retrieveAllProducts();
-		for(Product prod:prodList){
-			prodDTOList.add(productMapper.generateProductTO(prod));
+//		for(Product prod:prodList){
+//			prodDTOList.add(productMapper.generateProductTO(prod));
+//		}
+		ProductDto tmpDto;
+		
+		//qua c'è del male e della violazione di incapsulamento del decorator.. però o così o non so come 
+		for(Product prod:prodList){ //qui è brutto perchè si danno al controller delle responsabilità relative alle decorazione concrete del product..
+			// potrei ottimizzare facendo due query, una per i decorated, una per i basic	e ciclando solo su quella giusta, vedremo
+			if(prod instanceof BasicProduct){
+				tmpDto = (productMapper.generateProductTO(prod));
+				tmpDto.setProductLinker(prod.getProductLinker());
+					for(Product otherProd:prodList){	// potrei ottimizzare facendo due query, una per i decorated, una per i basic, vedi sopra	
+					if(otherProd instanceof ProductDecorator){
+						if(otherProd.getProductLinker() == prod.getProductLinker()){
+							if(otherProd instanceof PromoProduct){
+								tmpDto.setDiscount(((PromoProduct) otherProd).getDiscount());
+							}
+							else if(otherProd instanceof ReconditionedProduct){
+								tmpDto.setConditions(((ReconditionedProduct) otherProd).getConditions());
+							}
+						}	
+					}	
+				}
+				prodDTOList.add(tmpDto);	
+			}				
 		}
+		
 		Gson jsonSerializer = new Gson();
 		return jsonSerializer.toJson(prodDTOList) ;
 
 	}
 
-	public void deleteProduct(long productID){
+	public void deleteProduct(long itemID, int productLinker){
 		
-		orderDao.deleteOrdersByProductID(productID); //nel caso sia in qualche ordine si propaga la cancellazione
+		orderDao.deleteOrdersByProductID(itemID); //nel caso sia in qualche ordine si propaga la cancellazione
 		
-		int numDeleted = productDao.deleteProductByID(productID);
-		if(numDeleted != 1)
+		int numDeleted = productDao.deleteDecoratedProduct(productLinker);
+		if(numDeleted == 0)
 			System.out.println("error in deleting single product");
 	}
 
@@ -57,6 +84,7 @@ public class ProductController {
 		if(productDto.getPrice()<0 || productDto.getQuantity()<0){
 			throw new Exception("prezzi o quantità non consentiti");
 		}
+		product.setProductLinker(product.hashCode());
 		// prova uso del decorator -- problemi
 		if(productDto.getDiscount()>0 && productDto.getConditions()!=null){//è un prodotto ricondizionato in promo
 			newProduct = new PromoProduct(new ReconditionedProduct(product, productDto.getConditions()), productDto.getDiscount());

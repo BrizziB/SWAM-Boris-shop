@@ -14,6 +14,7 @@ public class PromoProduct extends ProductDecorator {
 	
 	public PromoProduct(Product prod, float discount) {
 		super(prod);
+		this.productLinker = prod.getProductLinker();
 		this.discount = discount;
 	}
 	

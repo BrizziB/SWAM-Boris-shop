@@ -29,9 +29,9 @@ public class ProductRestServices {
 	
 	//c'è da implementare la cancellazione eh !
 	@DELETE
-	@Path("/delete/{itemID}")
-	public Response deleteProductByID(@PathParam("itemID") long id){
-		productController.deleteProduct(id);
+	@Path("/delete/{itemID}/{productLinker}")
+	public Response deleteProductByID(@PathParam("itemID") long id, @PathParam("productLinker") int linker){
+		productController.deleteProduct(id, linker);
 		return Response.ok().build();
 	}
 	

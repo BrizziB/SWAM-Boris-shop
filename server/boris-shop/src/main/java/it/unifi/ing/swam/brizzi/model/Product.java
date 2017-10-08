@@ -16,14 +16,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-//@Entity
+@Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-@MappedSuperclass
+//@MappedSuperclass
 public abstract class Product {
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected long itemID;
 	
+	protected int productLinker;
+
+	public int getProductLinker() {
+		return productLinker;
+	}
+
+	public void setProductLinker(int productLinker) {
+		this.productLinker = productLinker;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item", cascade = CascadeType.ALL)
 	protected List<Order> orders;

@@ -11,6 +11,7 @@ public class ReconditionedProduct extends ProductDecorator {
 	
 	public ReconditionedProduct(Product prod, String cond) {
 		super(prod);
+		this.productLinker = prod.getProductLinker();
 		this.conditions=cond;
 	}
 	

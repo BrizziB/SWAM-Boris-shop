@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Product } from '../Model/Product';
 
-import { PRODUCTS } from './mock.products';
+/* import { PRODUCTS } from './mock.products'; */
 
 @Injectable()
 export class ProductService {
@@ -28,8 +28,8 @@ export class ProductService {
             .catch(this.handleError);
     }
 
-    deleteProduct(productID: number): Promise<void> {
-        const url = `${this.productsUrl}/delete/${productID}`;
+    deleteProduct(itemID: number, productID: number): Promise<void> {
+        const url = `${this.productsUrl}/delete/${itemID}/${productID}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(() => null)

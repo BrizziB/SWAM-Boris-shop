@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
 
     removeProduct(product: Product): void {
         this.productService
-            .deleteProduct(product.itemID)
+            .deleteProduct(product.itemID, product.productLinker)
             .then(() => {
                 this.products = this.products.filter(p => p !== product);
             });
@@ -62,7 +62,9 @@ export class ProductsComponent implements OnInit {
                 itemID: selectedProduct.itemID,
                 description: selectedProduct.description,
                 price: selectedProduct.price,
-                quantity: selectedProduct.quantity
+                quantity: selectedProduct.quantity,
+                discount: selectedProduct.discount,
+                conditions: selectedProduct.conditions
             });
 
             this.productService.updateProduct(body).then(product => this.disactivateSaveButton(product.itemID));

@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
+/* import { PRODUCTS } from './mock.products'; */
 var ProductService = (function () {
     function ProductService(http) {
         this.http = http;
@@ -29,8 +30,8 @@ var ProductService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ProductService.prototype.deleteProduct = function (productID) {
-        var url = this.productsUrl + "/delete/" + productID;
+    ProductService.prototype.deleteProduct = function (itemID, productID) {
+        var url = this.productsUrl + "/delete/" + itemID + "/" + productID;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(function () { return null; })

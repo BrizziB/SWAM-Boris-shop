@@ -12,7 +12,14 @@ public class ProductDto implements Serializable {
 	private Integer quantity;
 	private String conditions;
 	private float discount;
+	private int productLinker;
 	
+	public int getProductLinker() {
+		return productLinker;
+	}
+	public void setProductLinker(int productLinker) {
+		this.productLinker = productLinker;
+	}
 	public String getConditions() {
 		return conditions;
 	}

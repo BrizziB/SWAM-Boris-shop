@@ -43,7 +43,7 @@ var ProductsComponent = (function () {
     ProductsComponent.prototype.removeProduct = function (product) {
         var _this = this;
         this.productService
-            .deleteProduct(product.itemID)
+            .deleteProduct(product.itemID, product.productLinker)
             .then(function () {
             _this.products = _this.products.filter(function (p) { return p !== product; });
         });
@@ -61,7 +61,9 @@ var ProductsComponent = (function () {
                 itemID: selectedProduct.itemID,
                 description: selectedProduct.description,
                 price: selectedProduct.price,
-                quantity: selectedProduct.quantity
+                quantity: selectedProduct.quantity,
+                discount: selectedProduct.discount,
+                conditions: selectedProduct.conditions
             });
             this.productService.updateProduct(body).then(function (product) { return _this.disactivateSaveButton(product.itemID); });
         }

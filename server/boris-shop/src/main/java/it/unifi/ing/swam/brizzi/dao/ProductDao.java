@@ -46,6 +46,24 @@ public class ProductDao {
 		}
 		return tmp;
 	}
+	
+	
+	@Transactional
+	public int deleteDecoratedProduct(int productLinker){
+		int numDeleted = 0;
+		try{
+//			em.joinTransaction();
+			Query query = em.createQuery(
+				"DELETE FROM Product p WHERE p.productLinker = :linker")
+				.setParameter("linker", productLinker);
+			numDeleted = query.executeUpdate();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return numDeleted;
+	}	
+	
+	
 	@Transactional
 	public int deleteProductByID(long ID){
 		int numDeleted = 0;

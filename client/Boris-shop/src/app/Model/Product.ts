@@ -3,4 +3,7 @@ export class Product {
     price: string;
     description: string;
     quantity: number;
+    discount: number;
+    conditions: string;
+    productLinker: number;
 }
