@@ -49,7 +49,7 @@ var OrderInsertionFormComponent = (function () {
         var _this = this;
         this.orderID = this.ordersComponent.index;
         if (this.buyer === undefined || this.items.length === 0) {
-            alert('order was missing the buyer or at least on item');
+            alert('select the buyer and at least one product');
         }
         else {
             this.items.forEach(function (item) {

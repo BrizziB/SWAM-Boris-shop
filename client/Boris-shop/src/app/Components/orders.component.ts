@@ -36,6 +36,14 @@ export class OrdersComponent implements OnInit {
         this.orderService.getOrders().then(orders => this.orders = orders).then(orders => this.setMaxIndex());
     }
 
+    removeOrder(order: Order): void {
+        this.orderService
+            .deleteOrder(order.orderID)
+            .then(() => {
+                this.orders = this.orders.filter(o => o !== order);
+            });
+    }
+
     ngOnInit(): void {
         this.getOrders();
     }

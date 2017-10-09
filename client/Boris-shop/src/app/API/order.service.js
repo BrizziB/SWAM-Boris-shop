@@ -29,6 +29,13 @@ var OrderService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    OrderService.prototype.deleteOrder = function (orderID) {
+        var url = this.ordersUrl + "/delete/" + orderID;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(function () { return null; })
+            .catch(this.handleError);
+    };
     OrderService.prototype.addNewOrder = function (body) {
         var url = this.ordersUrl + "/add";
         return this.http

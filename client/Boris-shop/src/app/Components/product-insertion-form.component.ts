@@ -59,7 +59,7 @@ export class ProductInsertionFormComponent {
         this.itemID = this.productComponent.index;
 
         if (!this.allFieldsAreValid()) {
-            alert('some field has been left blank or contains illegal characters');
+            alert('some fields have been left blank or contains illegal characters');
         }else {
             let body = JSON.stringify({
                 itemID: this.itemID,

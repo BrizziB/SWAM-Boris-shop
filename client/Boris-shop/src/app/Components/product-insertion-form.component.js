@@ -31,7 +31,7 @@ var ProductInsertionFormComponent = (function () {
         var _this = this;
         this.itemID = this.productComponent.index;
         if (!this.allFieldsAreValid()) {
-            alert('some field has been left blank or contains illegal characters');
+            alert('some fields have been left blank or contains illegal characters');
         }
         else {
             var body = JSON.stringify({

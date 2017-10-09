@@ -30,87 +30,67 @@ public class ProductController {
 
 	public String retrieveAllProducts(){
 		List<ProductDto> prodDTOList = new ArrayList<>();
-		List<Product> prodList = productDao.retrieveAllProducts();
-//		for(Product prod:prodList){
-//			prodDTOList.add(productMapper.generateProductTO(prod));
-//		}
+		List<BasicProduct> basicProducts = new ArrayList<>();
+		List<Product> decoratedProducts = new ArrayList<>();
+		productDao.retrieveAllProducts(basicProducts, decoratedProducts);
+		
 		ProductDto tmpDto;
-		
-		//qua c'è del male e della violazione di incapsulamento del decorator.. però o così o non so come 
-		for(Product prod:prodList){ //qui è brutto perchè si danno al controller delle responsabilità relative alle decorazione concrete del product..
-			// potrei ottimizzare facendo due query, una per i decorated, una per i basic	e ciclando solo su quella giusta, vedremo
-			if(prod instanceof BasicProduct){
-				tmpDto = (productMapper.generateProductTO(prod));
-				tmpDto.setProductLinker(prod.getProductLinker());
-					for(Product otherProd:prodList){	// potrei ottimizzare facendo due query, una per i decorated, una per i basic, vedi sopra	
-					if(otherProd instanceof ProductDecorator){
-						if(otherProd.getProductLinker() == prod.getProductLinker()){
-							if(otherProd instanceof PromoProduct){
-								tmpDto.setDiscount(((PromoProduct) otherProd).getDiscount());
-							}
-							else if(otherProd instanceof ReconditionedProduct){
-								tmpDto.setConditions(((ReconditionedProduct) otherProd).getConditions());
-							}
-						}	
-					}	
+		//ora il numero di iterazioni è fissato a num(basicProducts)*num(decoratedProducts) 
+		//si potrebbe migliorare implementando il secondo for con un iteratore e togliendo 
+		//gli elementi mano mano che vengono trovati..
+		for(Product prod : basicProducts){
+			tmpDto = productMapper.generateBasicProductTO(prod);
+			for(Product decoratedProd : decoratedProducts){
+				if(decoratedProd.getProductLinker() == prod.getProductLinker()){
+					tmpDto = productMapper.decorateProductTO(tmpDto, decoratedProd);
 				}
-				prodDTOList.add(tmpDto);	
-			}				
+			}
+			prodDTOList.add(tmpDto);
 		}
-		
 		Gson jsonSerializer = new Gson();
 		return jsonSerializer.toJson(prodDTOList) ;
 
 	}
 
 	public void deleteProduct(long itemID, int productLinker){
-		
 		orderDao.deleteOrdersByProductID(itemID); //nel caso sia in qualche ordine si propaga la cancellazione
-		
-		int numDeleted = productDao.deleteDecoratedProduct(productLinker);
-		if(numDeleted == 0)
-			System.out.println("error in deleting single product");
+		productDao.deleteDecoratedProduct(productLinker);
+
 	}
 
 	public String addProduct(String body)throws Exception{
 		Gson gson = new Gson();
 		ProductDto productDto = gson.fromJson(body, ProductDto.class);
-		Product newProduct;
-		
-		// --- --- --- UNDER TESTING --- --- --- 
-		// non lo lascio così, poi credo che farò uno strategy che decida quale tipo di Product istanziare, per ora è per test 		
-		//prova validazione input
-		Product product = productMapper.generateProductFromDTO(productDto);
 		if(productDto.getPrice()<0 || productDto.getQuantity()<0){
 			throw new Exception("prezzi o quantità non consentiti");
 		}
-		product.setProductLinker(product.hashCode());
-		// prova uso del decorator -- problemi
-		if(productDto.getDiscount()>0 && productDto.getConditions()!=null){//è un prodotto ricondizionato in promo
-			newProduct = new PromoProduct(new ReconditionedProduct(product, productDto.getConditions()), productDto.getDiscount());
-		}
-		else if(productDto.getDiscount()>0){// è un prodotto in promo
-			newProduct = new PromoProduct(product, productDto.getDiscount());
-		}
-		else if(productDto.getConditions()!=null){// è un prodotto ricondizionato
-			newProduct = new ReconditionedProduct(product, productDto.getConditions());
-		}
-		else{ //prodotto base
-			 newProduct = product;
-		}
-		// --- --- --- UNDER TESTING --- --- --- 
-		
-		productDao.addProduct(newProduct);
+		productDto.setProductLinker(productDto.hashCode());
+		Product product = productMapper.generateProductFromDTO(productDto);	
+		productDao.addProduct(product);
 		return gson.toJson(productDto);  //così è un po' finto perchè rispondo con lo stesso oggetto che è era nella request, però in teoria potrei averlo lavorato o aver aggiunto dei campi, quindi credo abbia senso
 	}
 
 	public String updateProduct(String body){
 		Gson gson = new Gson();
 		ProductDto productDto = gson.fromJson(body, ProductDto.class);
+		
 		Product updatedProduct = productMapper.generateProductFromDTO(productDto);
-		long productID = productDto.getItemID();
-		productDao.updateProduct(updatedProduct, productID);
+		
+		int productLinker = productDto.getProductLinker();
+		productDao.updateProduct(productDto);	
+		
+		
 		return gson.toJson(productDto);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+

@@ -55,7 +55,7 @@ export class OrderInsertionFormComponent implements OnInit {
     addNewOrder(): void {
         this.orderID = this.ordersComponent.index;
         if (this.buyer === undefined || this.items.length === 0) {
-            alert('order was missing the buyer or at least on item');
+            alert('select the buyer and at least one product');
         } else {
             this.items.forEach(item => {
                 let body = JSON.stringify({

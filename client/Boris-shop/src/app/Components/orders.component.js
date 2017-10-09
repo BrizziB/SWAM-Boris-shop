@@ -32,6 +32,14 @@ var OrdersComponent = (function () {
         var _this = this;
         this.orderService.getOrders().then(function (orders) { return _this.orders = orders; }).then(function (orders) { return _this.setMaxIndex(); });
     };
+    OrdersComponent.prototype.removeOrder = function (order) {
+        var _this = this;
+        this.orderService
+            .deleteOrder(order.orderID)
+            .then(function () {
+            _this.orders = _this.orders.filter(function (o) { return o !== order; });
+        });
+    };
     OrdersComponent.prototype.ngOnInit = function () {
         this.getOrders();
     };

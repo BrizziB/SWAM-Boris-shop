@@ -22,26 +22,33 @@
         <tbody>
             <tr *ngFor="let product of products">
                 <th class="tab-field">
-                    <input [(ngModel)]="product.description" placeholder={{product.description}} (input)="activateSaveButton(product.itemID)"> 
+                    <input [(ngModel)]="product.description" placeholder={{product.description}} (input)="activateSaveButton(product.itemID)">
                 </th>
                 <!-- <th class="tab-field">{{product.itemID}}</th> -->
                 <th class="tab-field">
-                    <input [(ngModel)]="product.price" placeholder={{product.price}} (input)="activateSaveButton(product.itemID)" >
+                    <input [(ngModel)]="product.price" placeholder={{product.price}} (input)="activateSaveButton(product.itemID)">
                 </th>
                 <th class="tab-field">
-                    <input [(ngModel)]="product.quantity" placeholder={{product.quantity}} (input)="activateSaveButton(product.itemID)">
+                    <input  [(ngModel)]="product.quantity" placeholder={{product.quantity}} (input)="activateSaveButton(product.itemID)">
                 </th>
                 <th class="tab-field">
-                    <input [(ngModel)]="product.discount" placeholder={{product.discount}} (input)="activateSaveButton(product.itemID)">
+                    <input class="nullable-class" [(ngModel)]="product.discount" placeholder={{product.discount}} [attr.disabled]="product.discount == 0 ? true : null"
+                    (input)="activateSaveButton(product.itemID)">
                 </th>
+
+                <!-- *ngIf="product.conditions.length > 0"            *ngIf="product.discount > 0 "           -->
+
                 <th class="tab-field">
-                    <input [(ngModel)]="product.conditions" placeholder={{product.conditions}} (input)="activateSaveButton(product.itemID)">
+                    <input class="nullable-class"[(ngModel)]="product.conditions" placeholder={{product.conditions}} [attr.disabled]="product.conditions == undefined ? true : null"
+                    (input)="activateSaveButton(product.itemID)">
                 </th>
 
                 <th class="tab-field">
                     <div class="btn-group" role="group">
-                        <button [attr.id]="'btn-remove-prod-' + product.itemID" (click)="removeProduct(product); $event.stopPropagation()" type="button" class= "btn btn-info btn-sm delete group-btn" >Delete</button>
-                        <button [attr.id]="'btn-save-prod-' + product.itemID" (click)="saveProduct(product); $event.stopPropagation()" type="button" class="btn btn-info btn-sm delete disabled group-btn">SaveChanges</button>
+                        <button [attr.id]="'btn-remove-prod-' + product.itemID" (click)="removeProduct(product); $event.stopPropagation()" type="button"
+                            class="btn btn-info btn-sm delete group-btn">Delete</button>
+                        <button [attr.id]="'btn-save-prod-' + product.itemID" (click)="saveProduct(product); $event.stopPropagation()" type="button"
+                            class="btn btn-info btn-sm delete disabled group-btn">SaveChanges</button>
                     </div>
                 </th>
             </tr>
@@ -49,6 +56,5 @@
     </table>
 </div>
 <div *ngIf="showForm">
-    <product-insertion-tab ></product-insertion-tab> 
+    <product-insertion-tab></product-insertion-tab>
 </div>
-

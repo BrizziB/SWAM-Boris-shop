@@ -29,6 +29,17 @@ export class ProductsComponent implements OnInit {
         return false;
     }
 
+    decorateTable(): void {
+        let fields = document.getElementsByClassName('nullable-class');
+        for (let i = 0; i < fields.length; i++) {
+
+            if (fields[i].nodeValue.length === 0) {
+                fields[i].setAttribute('disabled', 'true');
+            }
+
+        }
+    }
+
     setMaxIndex(): void {
         let max = 0;
         this.products.forEach(product => {
@@ -37,10 +48,14 @@ export class ProductsComponent implements OnInit {
             }
         });
         this.index = max + 1;
-    }
+        /*         alert(this.products); */
+    };
 
     getProducts(): void {
-        this.productService.getProducts().then(products => this.products = products).then(products => this.setMaxIndex());
+        this.productService.getProducts().then(products => this.products = products).then(products => {
+            this.setMaxIndex();
+        }).then(product => this.decorateTable());
+
     }
 
     removeProduct(product: Product): void {
@@ -64,10 +79,13 @@ export class ProductsComponent implements OnInit {
                 price: selectedProduct.price,
                 quantity: selectedProduct.quantity,
                 discount: selectedProduct.discount,
-                conditions: selectedProduct.conditions
+                conditions: selectedProduct.conditions,
+                productLinker: selectedProduct.productLinker
             });
 
-            this.productService.updateProduct(body).then(product => this.disactivateSaveButton(product.itemID));
+            this.productService.updateProduct(body).then(product => {
+                this.disactivateSaveButton(product.itemID);
+            });
         }
     }
 
@@ -78,8 +96,14 @@ export class ProductsComponent implements OnInit {
         document.getElementById('btn-save-prod-' + itemID).classList.add('disabled');
     }
 
+
     ngOnInit(): void {
         this.getProducts();
+
     }
+
+/*     ngAfterViewChecked(): void {
+        this.decorateTable();
+    } */
 
 }

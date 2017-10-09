@@ -27,6 +27,14 @@ var ProductsComponent = (function () {
         }
         return false;
     };
+    ProductsComponent.prototype.decorateTable = function () {
+        var fields = document.getElementsByClassName('nullable-class');
+        for (var i = 0; i < fields.length; i++) {
+            if (fields[i].nodeValue.length === 0) {
+                fields[i].setAttribute('disabled', 'true');
+            }
+        }
+    };
     ProductsComponent.prototype.setMaxIndex = function () {
         var max = 0;
         this.products.forEach(function (product) {
@@ -35,10 +43,14 @@ var ProductsComponent = (function () {
             }
         });
         this.index = max + 1;
+        /*         alert(this.products); */
     };
+    ;
     ProductsComponent.prototype.getProducts = function () {
         var _this = this;
-        this.productService.getProducts().then(function (products) { return _this.products = products; }).then(function (products) { return _this.setMaxIndex(); });
+        this.productService.getProducts().then(function (products) { return _this.products = products; }).then(function (products) {
+            _this.setMaxIndex();
+        }).then(function (product) { return _this.decorateTable(); });
     };
     ProductsComponent.prototype.removeProduct = function (product) {
         var _this = this;
@@ -63,9 +75,12 @@ var ProductsComponent = (function () {
                 price: selectedProduct.price,
                 quantity: selectedProduct.quantity,
                 discount: selectedProduct.discount,
-                conditions: selectedProduct.conditions
+                conditions: selectedProduct.conditions,
+                productLinker: selectedProduct.productLinker
             });
-            this.productService.updateProduct(body).then(function (product) { return _this.disactivateSaveButton(product.itemID); });
+            this.productService.updateProduct(body).then(function (product) {
+                _this.disactivateSaveButton(product.itemID);
+            });
         }
     };
     ProductsComponent.prototype.activateSaveButton = function (itemID) {

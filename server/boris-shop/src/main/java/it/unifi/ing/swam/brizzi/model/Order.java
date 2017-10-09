@@ -21,13 +21,13 @@ public class Order {
 	private User buyer;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Product item;
+	private BasicProduct item;
 	
 	private OrderStatus status;
 	
 	public void copyOrder(Order otherOrder){
 		this.buyer = otherOrder.getBuyer();
-		this.item =  otherOrder.getItem();
+		this.item =  (BasicProduct) otherOrder.getItem();
 		this.status = otherOrder.getStatus();
 	}
 
@@ -51,7 +51,7 @@ public class Order {
 		return item;
 	}
 
-	public void setItem(Product item) {
+	public void setItem(BasicProduct item) {
 		this.item =  item;
 	}
 

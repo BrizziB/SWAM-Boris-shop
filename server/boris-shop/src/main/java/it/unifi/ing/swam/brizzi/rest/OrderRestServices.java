@@ -38,7 +38,7 @@ public class OrderRestServices {
 	@POST
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(String requestBody){
+	public Response addOrder(String requestBody){
 		String responseBody = orderController.addOrder(requestBody);
 		return Response.ok(responseBody, MediaType.APPLICATION_JSON).build();
 	}

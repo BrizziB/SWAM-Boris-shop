@@ -26,6 +26,14 @@ export class OrderService {
             .catch(this.handleError);
     }
 
+    deleteOrder(orderID: number): Promise<void> {
+        const url = `${this.ordersUrl}/delete/${orderID}`;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
+
     addNewOrder(body: String): Promise<Order> {
         const url = `${this.ordersUrl}/add`;
         return this.http
