@@ -24,7 +24,6 @@
                 <th class="tab-field">
                     <input [(ngModel)]="product.description" placeholder={{product.description}} (input)="activateSaveButton(product.itemID)">
                 </th>
-                <!-- <th class="tab-field">{{product.itemID}}</th> -->
                 <th class="tab-field">
                     <input [(ngModel)]="product.price" placeholder={{product.price}} (input)="activateSaveButton(product.itemID)">
                 </th>
@@ -35,9 +34,6 @@
                     <input class="nullable-class" [(ngModel)]="product.discount" placeholder={{product.discount}} [attr.disabled]="product.discount == 0 ? true : null"
                     (input)="activateSaveButton(product.itemID)">
                 </th>
-
-                <!-- *ngIf="product.conditions.length > 0"            *ngIf="product.discount > 0 "           -->
-
                 <th class="tab-field">
                     <input class="nullable-class"[(ngModel)]="product.conditions" placeholder={{product.conditions}} [attr.disabled]="product.conditions == undefined ? true : null"
                     (input)="activateSaveButton(product.itemID)">
