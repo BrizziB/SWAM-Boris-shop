@@ -98,7 +98,7 @@ public class ProductDao {
 	}
 	
 	@Transactional
-	public  void deleteDecoratedProduct(int productLinker){
+	public  int deleteDecoratedProduct(int productLinker){
 		int numDeleted = 0;
 		try{
 //			em.joinTransaction();
@@ -109,7 +109,7 @@ public class ProductDao {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		System.out.println(numDeleted);
+		return numDeleted;
 	}	
 	
 	
