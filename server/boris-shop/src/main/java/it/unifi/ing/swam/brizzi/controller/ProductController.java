@@ -1,7 +1,6 @@
 package it.unifi.ing.swam.brizzi.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,11 +11,7 @@ import it.unifi.ing.swam.brizzi.bean.mapper.ProductMapper;
 import it.unifi.ing.swam.brizzi.dao.OrderDao;
 import it.unifi.ing.swam.brizzi.dao.ProductDao;
 import it.unifi.ing.swam.brizzi.dto.ProductDto;
-import it.unifi.ing.swam.brizzi.model.BasicProduct;
 import it.unifi.ing.swam.brizzi.model.Product;
-import it.unifi.ing.swam.brizzi.model.ProductDecorator;
-import it.unifi.ing.swam.brizzi.model.PromoProduct;
-import it.unifi.ing.swam.brizzi.model.ReconditionedProduct;
 
 public class ProductController {
 
@@ -30,9 +25,13 @@ public class ProductController {
 
 	public String retrieveAllProducts(){
 		List<ProductDto> prodDTOList = new ArrayList<>();
-		List<BasicProduct> basicProducts = new ArrayList<>();
-		List<Product> decoratedProducts = new ArrayList<>();
-		productDao.retrieveAllProducts(basicProducts, decoratedProducts);
+		ArrayList<Product> basicProducts = new ArrayList<>();
+		ArrayList<Product> decoratedProducts = new ArrayList<>();
+		ArrayList<ArrayList<Product>> listOfProductLists = new ArrayList<>();
+		listOfProductLists = productDao.retrieveAllProducts();//in prima posizione la lista di prodotti base, nella seconda la lista di prodotti decorati..
+		
+		basicProducts = listOfProductLists.get(0);
+		decoratedProducts = listOfProductLists.get(1);
 		
 		ProductDto tmpDto;
 		//ora il numero di iterazioni è fissato a num(basicProducts)*num(decoratedProducts) 

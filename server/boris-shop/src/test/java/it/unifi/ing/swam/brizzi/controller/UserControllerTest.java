@@ -65,13 +65,11 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	public void getAllUsers() throws InitializationError{
+	public void testGetAllUsers() throws InitializationError{
 		when(userDao.retrieveAllUsers()).thenReturn(allUsers);
 		Gson gson = new Gson();
 		assertEquals(gson.toJson(allUsersDto), userController.retrieveAllUsers());
-		
-		
-		
+			
 	}
 
 }

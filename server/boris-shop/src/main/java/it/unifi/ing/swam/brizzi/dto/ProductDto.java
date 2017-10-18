@@ -1,6 +1,7 @@
 package it.unifi.ing.swam.brizzi.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 //per ora non c'è niente
 
@@ -56,4 +57,29 @@ public class ProductDto implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
+	public boolean isEqual (ProductDto prod){
+		if( this.description == prod.getDescription() && 
+			this.quantity == prod.getQuantity() &&
+			this.price == prod.getPrice() &&
+			this.discount == prod.getDiscount() &&
+			Objects.equals(this.conditions, prod.getConditions())){
+				return true;
+		}
+		else 	return false;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

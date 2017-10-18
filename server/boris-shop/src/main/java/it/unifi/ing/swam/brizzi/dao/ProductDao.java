@@ -34,11 +34,11 @@ public class ProductDao {
 	}
 	
 	
-	public List<Product> getDecoratedProductByLinker(int ID){
+	public List<Product> getDecoratedProductByLinker(int linkerID){
 		List<Product> product = null ;
 		try{
 			TypedQuery<Product> query = em.createQuery("from Product p where p.productLinker = :linker ", Product.class)
-					.setParameter("linker", ID);
+					.setParameter("linker", linkerID);
 			product = query.getResultList();
 		} catch (Exception e){
 			e.printStackTrace();
@@ -76,8 +76,11 @@ public class ProductDao {
 		}
 	}
 
-	public void retrieveAllProducts(List<BasicProduct> basicProducts, List<Product> decoratedProducts){
+	public ArrayList<ArrayList<Product>> retrieveAllProducts(){
+		ArrayList<Product> basicProducts = new ArrayList<>();
+		ArrayList<Product> decoratedProducts = new ArrayList<>();
 		List<Product> tmp = new ArrayList<>();
+		ArrayList<ArrayList<Product>> totList = new ArrayList<>();
 		try{
 			TypedQuery<Product> query = em.createQuery("from Product ", Product.class);
 			tmp = query.getResultList();
@@ -94,6 +97,10 @@ public class ProductDao {
 				decoratedProducts.add(prod);
 			}
 		}
+		totList.add(basicProducts);
+		totList.add(decoratedProducts);
+		return totList;
+		
 
 	}
 	
