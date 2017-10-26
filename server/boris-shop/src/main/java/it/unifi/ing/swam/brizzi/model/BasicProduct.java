@@ -21,8 +21,6 @@ public class BasicProduct extends Product {
 	protected String description;
 	protected Integer quantity;
 
-	
-	
 	public BasicProduct(){
 		super();
 	}

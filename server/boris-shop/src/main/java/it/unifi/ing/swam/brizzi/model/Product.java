@@ -21,10 +21,14 @@ import javax.persistence.Table;
 //@MappedSuperclass
 public abstract class Product {
 	
+	public Product(){
+		
+	}
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected long itemID;
 	
-	protected int productLinker;
+	protected int productLinker; //collega le varie decorazioni del prodotto fra loro
 
 	public int getProductLinker() {
 		return productLinker;
