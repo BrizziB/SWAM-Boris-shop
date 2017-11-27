@@ -41,6 +41,8 @@ public class ProductMapper {
 			newProduct = new PromoProduct(new ReconditionedProduct(product, productDto.getConditions()), productDto.getDiscount());
 		}
 		else if(productDto.getDiscount()>0){// è un prodotto in promo
+			product.setPrice(product.getPrice() * (1-productDto.getDiscount()));
+			productDto.setPrice(product.getPrice());
 			newProduct = new PromoProduct(product, productDto.getDiscount());
 		}
 		else if(productDto.getConditions()!=null){// è un prodotto ricondizionato
