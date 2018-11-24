@@ -18,8 +18,9 @@
  		<properties>
  	   <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 	   <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-         <property name="hibernate.connection.url" 
-         		value="jdbc:mysql://localhost:3306/test" /> 
+	   <!-- 		ricordati che devi settare della roba sul server, ci devi metter il connettore mysql etc http://rafiqnayan.blogspot.com/2016/05/how-to-configure-wildfly-10-to-use-mysql.html -->
+<!-- 	   questi 3 campi sotto servono per il db di test, volendo si potrebbe settare tutto dal server, oppure anche così -->
+         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test" /> 
          <property name="hibernate.connection.username" value="root" /> 
  	   	 <property name="hibernate.connection.password" value="root" /> 
          <property name="hibernate.show_sql" value="false"/>

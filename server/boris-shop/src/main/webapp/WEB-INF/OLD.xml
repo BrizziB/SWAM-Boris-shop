@@ -27,17 +27,7 @@
         pool-name="boris.shop" enabled="true"
         use-java-context="true">
         <connection-url>jdbc:mysql://localhost:3306/prova</connection-url>
-		<driver>mysql-connector-java-5.1.25-bin.jar</driver>
-		<security>
-			<user-name>root</user-name>
-			<password>root</password>
-		</security>
-    </datasource>
-        <datasource jndi-name="java:jboss/datasources/ExampleDS"
-        pool-name="ExampleDS" enabled="false"
-        use-java-context="true">
-        <connection-url>jdbc:mysql://localhost:3306/prova</connection-url>
-		<driver>mysql-connector-java-5.1.25-bin.jar</driver>
+		<driver>mysql</driver>
 		<security>
 			<user-name>root</user-name>
 			<password>root</password>

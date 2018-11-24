@@ -1,0 +1,1 @@
+fai npm run serve, dovrebbe bastare
